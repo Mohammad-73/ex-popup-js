@@ -10,13 +10,23 @@
     <div class="content_modal_persian center_modal" id="alert_persian">
       <div class="modal">
         <div class="header_modal">
-          <span class="alert_modal_icon">!</span>
+          <span class="alert_modal_icon" id="alert_modal_icon_persian">!</span>
         </div>
         <div class="body_modal">
-          <h3 class="title_modal">این یک پیام خطاست</h3>
-          <p class="text_modal">توضیحات خطا اینجا قرار می گیرد</p>
+          <h3 class="title_modal" id="title_modal_persian">
+            این یک پیام خطاست
+          </h3>
+          <p class="text_modal" id="text_modal_persian">
+            توضیحات خطا اینجا قرار می گیرد
+          </p>
           <div class="button_modal">
-            <button class="close_modal">بستن</button>
+            <button
+              class="close_modal"
+              id="close_persian_modal"
+              onclick="alertClose()"
+            >
+              بستن
+            </button>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@
   --color_f74b4a: #f74b4a;
   --rgb_f74b4a: 247 74 74;
   --color_2bbef5: #2bbef5;
-  --color_2bbef5: 43 190 245;
+  --rgb_2bbef5: 43 190 245;
   --color_fec101: #fec101;
   --rgb_fec101: 254 193 1;
 }
@@ -68,6 +68,7 @@
 }
 
 .content_modal_persian {
+  display: none;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
@@ -78,13 +79,15 @@
 }
 
 .center_modal {
-  display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.d_flex {
+  display: flex;
+}
+
 .content_modal_persian .modal .header_modal {
-  background-color: #61d215;
   height: 90px;
   border-radius: 10px 10px 0 0;
   display: flex;
@@ -130,4 +133,9 @@
   border: 0;
   width: 100%;
   border-radius: 10px;
+  display: none;
+}
+
+.d_block {
+  display: block !important;
 }
