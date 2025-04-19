@@ -1,3 +1,33 @@
+function setHtml() {
+  let body = document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+     <div class="content_modal_persian center_modal" id="alert_persian">
+      <div class="modal">
+        <div class="header_modal">
+          <span class="alert_modal_icon" id="alert_modal_icon_persian">!</span>
+        </div>
+        <div class="body_modal">
+          <h3 class="title_modal" id="title_modal_persian"></h3>
+          <p class="text_modal" id="text_modal_persian"></p>
+          <div class="button_modal" id="button_modal_persian">
+            <button
+              class="close_modal"
+              id="close_persian_modal"
+              onclick="alertClose()"
+            >
+              بستن
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
+  );
+}
+
+setHtml();
+
 function persianAlert(options) {
   const {
     message,
@@ -19,6 +49,14 @@ function persianAlert(options) {
   let modalIcon = alertPersian.querySelector("#alert_modal_icon_persian");
   let buttonGroup = alertPersian.querySelector("#button_modal_persian");
   let btnConfirm = alertPersian.querySelector(".btn_confirm");
+
+  function setClass(el, className) {
+    el.classList.add(className);
+  }
+
+  function removeClass(el, className) {
+    el.classList.remove(...className);
+  }
 
   let alertClass = [
     "bg_success_modal",
@@ -46,7 +84,7 @@ function persianAlert(options) {
     modalAlert.classList.add(position);
   }
 
-  if (btnConfirm) {
+  if (btnConfirm && typeof onConfirm === "function") {
     btnConfirm.remove();
   }
 
@@ -56,36 +94,36 @@ function persianAlert(options) {
     buttonClose.classList.remove("d_block");
   }
 
-  headerAlert.classList.remove(...alertClass);
+  removeClass(headerAlert, alertClass);
 
-  buttonClose.classList.remove(...buttonClass);
+  removeClass(buttonClose, buttonClass);
 
-  modalIcon.classList.remove(...iconClass);
+  removeClass(modalIcon, iconClass);
 
   switch (alertType) {
     case "success":
-      headerAlert.classList.add("bg_success_modal");
-      buttonClose.classList.add("btn_modal_success");
+      setClass(headerAlert, "bg_success_modal");
+      setClass(buttonClose, "btn_modal_success");
+      setClass(modalIcon, "text_success");
       modalIcon.textContent = "✔";
-      modalIcon.classList.add("text_success");
       break;
     case "error":
-      headerAlert.classList.add("bg_danger_modal");
-      buttonClose.classList.add("btn_modal_danger");
+      setClass(headerAlert, "bg_danger_modal");
+      setClass(buttonClose, "btn_modal_danger");
+      setClass(modalIcon, "text_danger");
       modalIcon.textContent = "!";
-      modalIcon.classList.add("text_danger");
       break;
     case "warning":
-      headerAlert.classList.add("bg_warning_modal");
-      buttonClose.classList.add("btn_modal_warning");
+      setClass(headerAlert, "bg_warning_modal");
+      setClass(buttonClose, "btn_modal_warning");
+      setClass(modalIcon, "text_warning");
       modalIcon.textContent = "!";
-      modalIcon.classList.add("text_warning");
       break;
     default:
-      headerAlert.classList.add("bg_info_modal");
-      buttonClose.classList.add("btn_modal_info");
+      setClass(headerAlert, "bg_info_modal");
+      setClass(buttonClose, "btn_modal_info");
+      setClass(modalIcon, "text_info");
       modalIcon.textContent = "!";
-      modalIcon.classList.add("text_info");
   }
 
   if (timeout) {
