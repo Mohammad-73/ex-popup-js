@@ -1,8 +1,7 @@
 function setHtml() {
   let body = document.body.insertAdjacentHTML(
     "beforeend",
-    `
-     <div class="content_modal_persian center_modal" id="alert_persian">
+    `<div class="content_modal_persian center_modal" id="alert_persian">
       <div class="modal">
         <div class="header_modal">
           <span class="alert_modal_icon" id="alert_modal_icon_persian">!</span>
@@ -14,15 +13,11 @@ function setHtml() {
             <button
               class="close_modal"
               id="close_persian_modal"
-              onclick="alertClose()"
-            >
-              بستن
-            </button>
+            ></button>
           </div>
         </div>
       </div>
-    </div>
-    `
+    </div>`
   );
 }
 
@@ -77,8 +72,13 @@ function persianAlert(options) {
   modalAlert.classList.remove("slidInUpAnimation");
   titleModalPersian.textContent = message;
   textModalPersian.textContent = description;
-  buttonClass.textContent = buttonTextClose;
 
+  if (buttonTextClose) {
+    buttonClose.textContent = buttonTextClose;
+  } else {
+    buttonClose.textContent = "بستن";
+  }
+  buttonClose.addEventListener("click", alertClose);
   if (position) {
     alertPersian.classList.remove("center_modal");
     modalAlert.classList.add(position);
@@ -160,26 +160,3 @@ function alertClose() {
     alertPersian.classList.remove("d_flex");
   }, 500);
 }
-
-let show = document.getElementById("show");
-show.addEventListener("click", () => {
-  persianAlert({
-    message: "از حذف مطمئن هستید",
-    description: "قابل بازگردانی نیست",
-    alertType: "info",
-    // position: "top_left",
-    // timeout: 3000,
-    buttonTextClose: "بی خیال",
-    showButtonClose: true,
-    enableConfirm: false,
-    // onConfirm: function () {
-    //   persianAlert({
-    //     message: "عملیات",
-    //     description: "عملیات موفقیت آمیز بود",
-    //     alertType: "success",
-    //     position: "top-right",
-    //     buttonTextClose: "بی خیال",
-    //   });
-    // },
-  });
-});
