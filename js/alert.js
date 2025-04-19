@@ -10,6 +10,7 @@ function persianAlert(options) {
   } = options;
   let alertPersian = document.getElementById("alert_persian");
   let headerAlert = alertPersian.querySelector(".modal .header_modal");
+  let modalAlert = alertPersian.querySelector(".modal");
   let buttonClose = alertPersian.querySelector("#close_persian_modal");
   let titleModalPersian = alertPersian.querySelector("#title_modal_persian");
   let textModalPersian = alertPersian.querySelector("#text_modal_persian");
@@ -29,6 +30,7 @@ function persianAlert(options) {
   let iconClass = ["text_success", "text_danger", "text_warning", "text_info"];
 
   alertPersian.classList.add("d_flex");
+  modalAlert.classList.add("slidInDownAnimation");
   titleModalPersian.textContent = message;
   textModalPersian.textContent = description;
   buttonClass.textContent = buttonTextClose;
@@ -73,14 +75,23 @@ function persianAlert(options) {
 
   if (timeout) {
     setTimeout(() => {
-      alertPersian.classList.remove("d_flex");
+      modalAlert.classList.remove("slidInDownAnimation");
+      modalAlert.classList.add("slidInUpAnimation");
+      setTimeout(() => {
+        alertPersian.classList.remove("d_flex");
+      }, 500);
     }, timeout);
   }
 }
 
 function alertClose() {
   let alertPersian = document.getElementById("alert_persian");
-  alertPersian.classList.remove("d_flex");
+  let modalAlert = alertPersian.querySelector(".modal");
+  modalAlert.classList.remove("slidInDownAnimation");
+  modalAlert.classList.add("slidInUpAnimation");
+  setTimeout(() => {
+    alertPersian.classList.remove("d_flex");
+  }, 500);
 }
 
 persianAlert({
@@ -88,7 +99,7 @@ persianAlert({
   description: "این متن پیام است",
   alertType: "success",
   position: "top-right",
-  //   timeout: 3000,
+  // timeout: 3000,
   buttonTextClose: "بی خیال",
   showButtonClose: true,
 });

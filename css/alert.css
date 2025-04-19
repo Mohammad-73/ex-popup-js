@@ -126,6 +126,7 @@
 .content_modal_persian .modal .body_modal .button_modal {
   width: 150px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .content_modal_persian .modal .body_modal .button_modal .close_modal {
@@ -138,4 +139,30 @@
 
 .d_block {
   display: block !important;
+}
+.slidInDownAnimation {
+  animation: slidInDown 500ms both;
+}
+.slidInUpAnimation {
+  animation: slidInUp 500ms both;
+}
+@keyframes slidInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slidInUp {
+  0% {
+    transform: translateY(20%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
