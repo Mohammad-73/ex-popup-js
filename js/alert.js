@@ -41,6 +41,11 @@ function persianAlert(options) {
   textModalPersian.textContent = description;
   buttonClass.textContent = buttonTextClose;
 
+  if (position) {
+    alertPersian.classList.remove("center_modal");
+    modalAlert.classList.add(position);
+  }
+
   if (btnConfirm) {
     btnConfirm.remove();
   }
@@ -124,19 +129,19 @@ show.addEventListener("click", () => {
     message: "از حذف مطمئن هستید",
     description: "قابل بازگردانی نیست",
     alertType: "info",
-    position: "top-right",
+    // position: "top_left",
     // timeout: 3000,
     buttonTextClose: "بی خیال",
     showButtonClose: true,
-    enableConfirm: true,
-    onConfirm: function () {
-      persianAlert({
-        message: "عملیات",
-        description: "عملیات موفقیت آمیز بود",
-        alertType: "success",
-        position: "top-right",
-        buttonTextClose: "بی خیال",
-      });
-    },
+    enableConfirm: false,
+    // onConfirm: function () {
+    //   persianAlert({
+    //     message: "عملیات",
+    //     description: "عملیات موفقیت آمیز بود",
+    //     alertType: "success",
+    //     position: "top-right",
+    //     buttonTextClose: "بی خیال",
+    //   });
+    // },
   });
 });
