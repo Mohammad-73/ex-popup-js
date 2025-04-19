@@ -7,6 +7,8 @@ function persianAlert(options) {
     timeout,
     buttonTextClose,
     showButtonClose = true,
+    enableConfirm = false,
+    onConfirm,
   } = options;
   let alertPersian = document.getElementById("alert_persian");
   let headerAlert = alertPersian.querySelector(".modal .header_modal");
@@ -15,6 +17,9 @@ function persianAlert(options) {
   let titleModalPersian = alertPersian.querySelector("#title_modal_persian");
   let textModalPersian = alertPersian.querySelector("#text_modal_persian");
   let modalIcon = alertPersian.querySelector("#alert_modal_icon_persian");
+  let buttonGroup = alertPersian.querySelector("#button_modal_persian");
+  let btnConfirm = alertPersian.querySelector(".btn_confirm");
+
   let alertClass = [
     "bg_success_modal",
     "bg_danger_modal",
@@ -31,9 +36,14 @@ function persianAlert(options) {
 
   alertPersian.classList.add("d_flex");
   modalAlert.classList.add("slidInDownAnimation");
+  modalAlert.classList.remove("slidInUpAnimation");
   titleModalPersian.textContent = message;
   textModalPersian.textContent = description;
   buttonClass.textContent = buttonTextClose;
+
+  if (btnConfirm) {
+    btnConfirm.remove();
+  }
 
   if (showButtonClose) {
     buttonClose.classList.add("d_block");
@@ -82,6 +92,20 @@ function persianAlert(options) {
       }, 500);
     }, timeout);
   }
+
+  if (enableConfirm) {
+    let buttonConfirm = document.createElement("button");
+    buttonConfirm.classList.add("bg_danger_modal", "btn_confirm");
+    buttonConfirm.textContent = "تایید";
+    buttonGroup.appendChild(buttonConfirm);
+    buttonGroup.classList.add("d_flex");
+    buttonConfirm.addEventListener("click", () => {
+      alertClose();
+      setTimeout(() => {
+        onConfirm();
+      }, 500);
+    });
+  }
 }
 
 function alertClose() {
@@ -94,12 +118,25 @@ function alertClose() {
   }, 500);
 }
 
-persianAlert({
-  message: "سلام",
-  description: "این متن پیام است",
-  alertType: "success",
-  position: "top-right",
-  // timeout: 3000,
-  buttonTextClose: "بی خیال",
-  showButtonClose: true,
+let show = document.getElementById("show");
+show.addEventListener("click", () => {
+  persianAlert({
+    message: "از حذف مطمئن هستید",
+    description: "قابل بازگردانی نیست",
+    alertType: "info",
+    position: "top-right",
+    // timeout: 3000,
+    buttonTextClose: "بی خیال",
+    showButtonClose: true,
+    enableConfirm: true,
+    onConfirm: function () {
+      persianAlert({
+        message: "عملیات",
+        description: "عملیات موفقیت آمیز بود",
+        alertType: "success",
+        position: "top-right",
+        buttonTextClose: "بی خیال",
+      });
+    },
+  });
 });
