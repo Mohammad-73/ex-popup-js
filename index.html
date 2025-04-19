@@ -4,35 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EX POPUP JS</title>
-    <link rel="stylesheet" href="alert.min.css" />
+    <link rel="stylesheet" href="css/alert.css" />
   </head>
   <body>
     <button id="show">Show Popup</button>
 
-    <script src="alert.min.js"></script>
+    <script src="js/alert.js"></script>
     <script>
       let show = document.getElementById("show");
       show.addEventListener("click", () => {
-      persianAlert({
-      message: "از حذف مطمئن هستید",
-      description: "قابل بازگردانی نیست",
-      alertType: "info",
-      // position: "top_left",
-      // timeout: 3000,
-      buttonTextClose: "بی خیال",
-      showButtonClose: true,
-      enableConfirm: false,
-      // onConfirm: function () {
-      //   persianAlert({
-      //     message: "عملیات",
-      //     description: "عملیات موفقیت آمیز بود",
-      //     alertType: "success",
-      //     position: "top-right",
-      //     buttonTextClose: "بی خیال",
-      //   });
-      // },
+        persianAlert({
+          message: "عنوان موفق",
+          description: "متن پیام موفق",
+          alertType: "success",
+          // position: "top_left",
+          // timeout: 3000,
+          buttonTextClose: "بستن",
+          showButtonClose: true,
+          enableConfirm: false,
+          // onConfirm: function () {
+          //   persianAlert({
+          //     message: "عملیات",
+          //     description: "عملیات موفقیت آمیز بود",
+          //     alertType: "success",
+          //     position: "top-right",
+          //     buttonTextClose: "بی خیال",
+          //   });
+          // },
+        });
       });
-    });
     </script>
   </body>
 </html>
